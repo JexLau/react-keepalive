@@ -12,10 +12,8 @@ const KeepAliveProvider: React.FC = (props) => {
       if (cacheStates[cacheId]) {
         const cacheState = cacheStates[cacheId];
         /** 如果组件处于销毁状态，先删 dom 再新建（清除缓存数据），否则直接新建 */
-        console.log("mount cacheState", cacheState)
         if (cacheState.status === CacheTypes.DESTROY) {
           const doms = cacheState.doms || [];
-            console.log("mount doms", doms)
             doms.forEach((dom) => {
             dom?.parentNode?.removeChild(dom)
           });

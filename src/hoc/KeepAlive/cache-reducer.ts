@@ -10,7 +10,6 @@ const reducer = (
   cacheStates: CacheContextOptions["cacheStates"],
   { type, payload }: CacheReducerAction
 ) => {
-  console.log("dispatch", type, payload);
   switch (type) {
     /** 新建 */
     case CacheTypes.CREATE:
@@ -38,7 +37,6 @@ const reducer = (
 
     /** 销毁 */
     case CacheTypes.DESTROY:
-      console.log("dispatch", payload);
       return {
         ...cacheStates,
         [payload.cacheId]: {
