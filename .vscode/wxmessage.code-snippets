@@ -1,0 +1,6 @@
+{
+  "jsdoc": {
+    "prefix": "jsdoc",
+    "body": ["/**  */"]
+  }
+}
