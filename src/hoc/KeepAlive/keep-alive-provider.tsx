@@ -11,10 +11,14 @@ const KeepAliveProvider: React.FC = (props) => {
     ({ cacheId, component }: CacheMountProps) => {
       if (cacheStates[cacheId]) {
         const cacheState = cacheStates[cacheId];
-        /** 如果组件已存在销毁状态，先删 dom 再新建，否则直接新建 */
+        /** 如果组件处于销毁状态，先删 dom 再新建（清除缓存数据），否则直接新建 */
+        console.log("mount cacheState", cacheState)
         if (cacheState.status === CacheTypes.DESTROY) {
           const doms = cacheState.doms || [];
-          doms.forEach((dom) => dom?.parentNode?.removeChild(dom));
+            console.log("mount doms", doms)
+            doms.forEach((dom) => {
+            dom?.parentNode?.removeChild(dom)
+          });
           dispatch({
             type: CacheTypes.CREATE,
             payload: { cacheId, component },
@@ -34,10 +38,7 @@ const KeepAliveProvider: React.FC = (props) => {
   const handleScroll = useCallback(
     (cacheId, { target }) => {
       if (cacheStates[cacheId]) {
-        const scrolls = cacheStates[cacheId].scrolls;
-        if (scrolls) {
-          scrolls[target] = target.scrollTop;
-        }
+        cacheStates[cacheId].scrollTop = target.scrollTop;
       }
     },
     [cacheStates]

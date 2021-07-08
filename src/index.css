@@ -12,11 +12,6 @@ code {
     monospace;
 }
 
-#root {
-  height: 500px;
-  overflow: scroll;
-}
-
 .menu {
   margin-right: 50;
   border: "1px solid #DDD";
@@ -25,4 +20,10 @@ code {
   height: 60;
   text-align: "center";
   vertical-align: "middle";
+  margin-right: 20px;
+}
+
+
+a {
+  text-decoration: none;
 }

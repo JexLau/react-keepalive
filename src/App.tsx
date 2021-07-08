@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { KeepAliveProvider, KeepAliveHOC } from "./hoc/KeepAlive";
 import Form from "./components/Form";
 import List from "./components/List";
 import Home from "Home";
 
-import { KeepAliveProvider, KeepAliveHOC } from "./hoc/KeepAlive";
 const KeepAliveHome = KeepAliveHOC(Home, { cacheId: "Home" });
 const KeepAliveUserList = KeepAliveHOC(List, {
   cacheId: "UserList",
-  // scroll: true,
+  isScroll: true,
 });
 const KeepAliveUserForm = KeepAliveHOC(Form, { cacheId: "UserForm" });
 

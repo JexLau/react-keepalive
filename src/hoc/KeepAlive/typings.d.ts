@@ -4,8 +4,6 @@ export const CacheTypes = {
   CREATE: "CREATE",
   /** 已创建 */
   CREATED: "CREATED",
-  /** 激活 */
-  ACTIVE: "ACTIVE",
   /** 销毁 */
   DESTROY: "DESTROY",
 };
@@ -38,16 +36,14 @@ export interface CacheContextOptions {
     [cacheId: string]: {
       /** 缓存组件 id */
       cacheId: string;
-      /** 缓存 dom 的状态 */
-      status?: CacheTypes;
-      /** 是否缓冲滚动 */
-      scrolls?: {
-        [target: string]: number;
-      };
       /** 缓存的组件 */
       component?: JSX.Element;
       /** 从ref获取到的需要缓存的 dom */
       doms?: Array<ChildNode>;
+      /** 缓存 dom 的状态 */
+      status?: CacheTypes;
+      /** 缓冲滚动的scrollTop */
+      scrollTop?: number;
     };
   };
   /** dispatch */

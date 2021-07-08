@@ -10,6 +10,7 @@ const reducer = (
   cacheStates: CacheContextOptions["cacheStates"],
   { type, payload }: CacheReducerAction
 ) => {
+  console.log("dispatch", type, payload);
   switch (type) {
     /** 新建 */
     case CacheTypes.CREATE:
@@ -18,7 +19,8 @@ const reducer = (
         [payload.cacheId]: {
           cacheId: payload.cacheId,
           component: payload.component,
-          status: CacheTypes.CREATE
+          scrollTop: 0,
+          status: CacheTypes.CREATE,
         },
       };
 
@@ -28,30 +30,24 @@ const reducer = (
         ...cacheStates,
         [payload.cacheId]: {
           ...cacheStates[payload.cacheId],
+          scrollTop: payload.scrollTop,
           doms: payload.doms,
-          status: CacheTypes.CREATED
-        },
-      };
-
-    /** 激活 */
-    case CacheTypes.ACTIVE:
-      return {
-        ...cacheStates,
-        [payload.cacheId]: {
-          ...cacheStates[payload.cacheId],
-          status: CacheTypes.ACTIVE
+          status: CacheTypes.CREATED,
         },
       };
 
     /** 销毁 */
     case CacheTypes.DESTROY:
+      console.log("dispatch", payload);
       return {
         ...cacheStates,
         [payload.cacheId]: {
           ...cacheStates[payload.cacheId],
-          status: CacheTypes.DESTROY
+          scrollTop: 0,
+          status: CacheTypes.DESTROY,
         },
       };
+
     default:
       return cacheStates;
   }
