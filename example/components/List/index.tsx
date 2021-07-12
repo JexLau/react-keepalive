@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 const List = () => {
-  const list = [...new Array(100).keys()];
+  const list = Object.keys(Array.from({ length: 100 }));
+
   return (
-    <div style={{ height: "500px", overflow: "scroll" }}>
+    <div style={{ height: '500px', overflow: 'scroll' }}>
       <h2>我是用户管理-列表页</h2>
       <ul>
         {list.map((item, index) => {

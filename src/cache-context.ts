@@ -1,5 +1,5 @@
 import React from "react";
-import { CacheContextOptions } from "./typings.d";
+import { CacheContextOptions } from "./type";
 
 /** 缓存上下文 */
 const CacheContext = React.createContext<CacheContextOptions>({

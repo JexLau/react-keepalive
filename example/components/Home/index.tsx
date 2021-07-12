@@ -1,15 +1,15 @@
-import { CacheContextOptions, CacheTypes } from "hoc/KeepAlive/typings.d";
+import * as React from 'react';
 
-const Home = (props: CacheContextOptions) => {
+const Home = (props) => {
 
   return (
-    <div className="app">
+    <div>
       <div>我是没什么用的首页</div>
       <div>
         <button
           onClick={() =>
             props.dispatch({
-              type: CacheTypes.DESTROY,
+              type: "DESTROY",
               payload: { cacheId: "UserForm" },
             })
           }
@@ -19,7 +19,7 @@ const Home = (props: CacheContextOptions) => {
         <button
           onClick={() =>
             props.dispatch({
-              type: CacheTypes.DESTROY,
+              type: "DESTROY",
               payload: { cacheId: "UserList" },
             })
           }

@@ -1,14 +1,17 @@
 /** 缓存的状态 */
-export const CacheTypes = {
+export enum CacheTypes {
   /** 创建 */
-  CREATE: "CREATE",
+  CREATE = 'CREATE',
   /** 已创建 */
-  CREATED: "CREATED",
+  CREATED = 'CREATED',
   /** 销毁 */
-  DESTROY: "DESTROY",
-};
+  DESTROY = 'DESTROY',
+}
 
-export type CacheTypesEnum = keyof CacheTypes
+export interface CacheReducerAction {
+  type: CacheTypes;
+  payload: CacheContextOptions['cacheStates']['cacheId'];
+}
 
 /** keep-alive 高阶组件 props */
 export interface KeepAliveHOCProps {
@@ -49,5 +52,8 @@ export interface CacheContextOptions {
   /** dispatch */
   dispatch: React.Dispatch<CacheReducerAction>;
   /** 缓存的滑动位置 */
-  handleScroll?: (cacheId: string, { target: string }) => void;
+  handleScroll?: (
+    cacheId: string,
+    { target }: { target: HTMLDivElement }
+  ) => void;
 }

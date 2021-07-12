@@ -1,8 +1,12 @@
+import 'react-app-polyfill/ie11';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { KeepAliveProvider, KeepAliveHOC } from "../.";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { KeepAliveProvider, KeepAliveHOC } from "./hoc/KeepAlive";
 import Form from "./components/Form";
 import List from "./components/List";
-import Home from "Home";
+import Home from "./components/Home";
+import "./index.less"
 
 const KeepAliveHome = KeepAliveHOC(Home, { cacheId: "Home" });
 const KeepAliveUserList = KeepAliveHOC(List, {
@@ -41,4 +45,9 @@ function App() {
   );
 }
 
-export default App;
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);

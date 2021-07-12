@@ -1,6 +1,6 @@
-import { useContext, useRef, useEffect } from "react";
-import { CacheTypes, KeepAliveHOCProps } from "./typings.d";
-import CacheContext from "./cache-context";
+import React, { useContext, useRef, useEffect } from 'react';
+import { CacheTypes, KeepAliveHOCProps } from './type';
+import CacheContext from './cache-context';
 
 const keepAlive = function <T>(
   CacheComponent: (props: T) => JSX.Element,
@@ -9,16 +9,18 @@ const keepAlive = function <T>(
   const { cacheId, isScroll = false } = CacheProps;
 
   return (props: T) => {
-    const { mount, cacheStates, dispatch, handleScroll } =
-      useContext(CacheContext);
+    const { mount, cacheStates, dispatch, handleScroll } = useContext(
+      CacheContext
+    );
     const ref = useRef<HTMLDivElement>(null);
 
     /** 处理滑动缓存 */
     useEffect(() => {
       if (isScroll && handleScroll) {
         ref.current?.addEventListener(
-          "scroll",
-          handleScroll.bind(null, cacheId),
+          'scroll',
+          // 预定义参数 cacheId
+          handleScroll.bind<null, any, any>(null, cacheId),
           true
         );
       }

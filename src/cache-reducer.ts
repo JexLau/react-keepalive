@@ -1,13 +1,8 @@
-import { CacheContextOptions, CacheTypes, CacheTypesEnum } from "./typings.d";
-
-export interface CacheReducerAction {
-  type: CacheTypesEnum;
-  payload: CacheContextOptions["cacheStates"]["cacheId"];
-}
+import { CacheContextOptions, CacheReducerAction, CacheTypes } from './type';
 
 /** 接收当前应用的state和触发的动作action，计算并返回最新的state */
 const reducer = (
-  cacheStates: CacheContextOptions["cacheStates"],
+  cacheStates: CacheContextOptions['cacheStates'],
   { type, payload }: CacheReducerAction
 ) => {
   switch (type) {

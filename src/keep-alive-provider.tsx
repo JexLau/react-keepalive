@@ -1,7 +1,8 @@
+import React from "react";
 import { useCallback, useReducer } from "react";
 import CacheContext from "./cache-context";
 import CacheReducer from "./cache-reducer";
-import { CacheMountProps, CacheTypes } from "./typings.d";
+import { CacheMountProps, CacheTypes } from "./type";
 
 const KeepAliveProvider: React.FC = (props) => {
   const [cacheStates, dispatch] = useReducer(CacheReducer, {});
